@@ -23,6 +23,7 @@ import { Route as AdminRouteImport } from './routes/admin'
 import { Route as AchievementsRouteImport } from './routes/achievements'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AdminIndexRouteImport } from './routes/admin.index'
 
 const StackRoute = StackRouteImport.update({
   id: '/stack',
@@ -94,12 +95,17 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AdminIndexRoute = AdminIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => AdminRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/achievements': typeof AchievementsRoute
-  '/admin': typeof AdminRoute
+  '/admin': typeof AdminRouteWithChildren
   '/blog': typeof BlogRoute
   '/certifications': typeof CertificationsRoute
   '/contact': typeof ContactRoute
@@ -110,12 +116,12 @@ export interface FileRoutesByFullPath {
   '/resume': typeof ResumeRoute
   '/skills': typeof SkillsRoute
   '/stack': typeof StackRoute
+  '/admin/': typeof AdminIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/achievements': typeof AchievementsRoute
-  '/admin': typeof AdminRoute
   '/blog': typeof BlogRoute
   '/certifications': typeof CertificationsRoute
   '/contact': typeof ContactRoute
@@ -126,13 +132,14 @@ export interface FileRoutesByTo {
   '/resume': typeof ResumeRoute
   '/skills': typeof SkillsRoute
   '/stack': typeof StackRoute
+  '/admin': typeof AdminIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/achievements': typeof AchievementsRoute
-  '/admin': typeof AdminRoute
+  '/admin': typeof AdminRouteWithChildren
   '/blog': typeof BlogRoute
   '/certifications': typeof CertificationsRoute
   '/contact': typeof ContactRoute
@@ -143,6 +150,7 @@ export interface FileRoutesById {
   '/resume': typeof ResumeRoute
   '/skills': typeof SkillsRoute
   '/stack': typeof StackRoute
+  '/admin/': typeof AdminIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -161,12 +169,12 @@ export interface FileRouteTypes {
     | '/resume'
     | '/skills'
     | '/stack'
+    | '/admin/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/about'
     | '/achievements'
-    | '/admin'
     | '/blog'
     | '/certifications'
     | '/contact'
@@ -177,6 +185,7 @@ export interface FileRouteTypes {
     | '/resume'
     | '/skills'
     | '/stack'
+    | '/admin'
   id:
     | '__root__'
     | '/'
@@ -193,13 +202,14 @@ export interface FileRouteTypes {
     | '/resume'
     | '/skills'
     | '/stack'
+    | '/admin/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
   AchievementsRoute: typeof AchievementsRoute
-  AdminRoute: typeof AdminRoute
+  AdminRoute: typeof AdminRouteWithChildren
   BlogRoute: typeof BlogRoute
   CertificationsRoute: typeof CertificationsRoute
   ContactRoute: typeof ContactRoute
@@ -312,14 +322,31 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/admin/': {
+      id: '/admin/'
+      path: '/'
+      fullPath: '/admin/'
+      preLoaderRoute: typeof AdminIndexRouteImport
+      parentRoute: typeof AdminRoute
+    }
   }
 }
+
+interface AdminRouteChildren {
+  AdminIndexRoute: typeof AdminIndexRoute
+}
+
+const AdminRouteChildren: AdminRouteChildren = {
+  AdminIndexRoute: AdminIndexRoute,
+}
+
+const AdminRouteWithChildren = AdminRoute._addFileChildren(AdminRouteChildren)
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
   AchievementsRoute: AchievementsRoute,
-  AdminRoute: AdminRoute,
+  AdminRoute: AdminRouteWithChildren,
   BlogRoute: BlogRoute,
   CertificationsRoute: CertificationsRoute,
   ContactRoute: ContactRoute,
