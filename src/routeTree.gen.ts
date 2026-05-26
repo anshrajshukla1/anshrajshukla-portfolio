@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as StackRouteImport } from './routes/stack'
 import { Route as SkillsRouteImport } from './routes/skills'
 import { Route as ProjectsRouteImport } from './routes/projects'
+import { Route as OpensourceRouteImport } from './routes/opensource'
 import { Route as ExperienceRouteImport } from './routes/experience'
 import { Route as CertificationsRouteImport } from './routes/certifications'
 import { Route as AchievementsRouteImport } from './routes/achievements'
@@ -31,6 +32,11 @@ const SkillsRoute = SkillsRouteImport.update({
 const ProjectsRoute = ProjectsRouteImport.update({
   id: '/projects',
   path: '/projects',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const OpensourceRoute = OpensourceRouteImport.update({
+  id: '/opensource',
+  path: '/opensource',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ExperienceRoute = ExperienceRouteImport.update({
@@ -65,6 +71,7 @@ export interface FileRoutesByFullPath {
   '/achievements': typeof AchievementsRoute
   '/certifications': typeof CertificationsRoute
   '/experience': typeof ExperienceRoute
+  '/opensource': typeof OpensourceRoute
   '/projects': typeof ProjectsRoute
   '/skills': typeof SkillsRoute
   '/stack': typeof StackRoute
@@ -75,6 +82,7 @@ export interface FileRoutesByTo {
   '/achievements': typeof AchievementsRoute
   '/certifications': typeof CertificationsRoute
   '/experience': typeof ExperienceRoute
+  '/opensource': typeof OpensourceRoute
   '/projects': typeof ProjectsRoute
   '/skills': typeof SkillsRoute
   '/stack': typeof StackRoute
@@ -86,6 +94,7 @@ export interface FileRoutesById {
   '/achievements': typeof AchievementsRoute
   '/certifications': typeof CertificationsRoute
   '/experience': typeof ExperienceRoute
+  '/opensource': typeof OpensourceRoute
   '/projects': typeof ProjectsRoute
   '/skills': typeof SkillsRoute
   '/stack': typeof StackRoute
@@ -98,6 +107,7 @@ export interface FileRouteTypes {
     | '/achievements'
     | '/certifications'
     | '/experience'
+    | '/opensource'
     | '/projects'
     | '/skills'
     | '/stack'
@@ -108,6 +118,7 @@ export interface FileRouteTypes {
     | '/achievements'
     | '/certifications'
     | '/experience'
+    | '/opensource'
     | '/projects'
     | '/skills'
     | '/stack'
@@ -118,6 +129,7 @@ export interface FileRouteTypes {
     | '/achievements'
     | '/certifications'
     | '/experience'
+    | '/opensource'
     | '/projects'
     | '/skills'
     | '/stack'
@@ -129,6 +141,7 @@ export interface RootRouteChildren {
   AchievementsRoute: typeof AchievementsRoute
   CertificationsRoute: typeof CertificationsRoute
   ExperienceRoute: typeof ExperienceRoute
+  OpensourceRoute: typeof OpensourceRoute
   ProjectsRoute: typeof ProjectsRoute
   SkillsRoute: typeof SkillsRoute
   StackRoute: typeof StackRoute
@@ -155,6 +168,13 @@ declare module '@tanstack/react-router' {
       path: '/projects'
       fullPath: '/projects'
       preLoaderRoute: typeof ProjectsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/opensource': {
+      id: '/opensource'
+      path: '/opensource'
+      fullPath: '/opensource'
+      preLoaderRoute: typeof OpensourceRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/experience': {
@@ -201,6 +221,7 @@ const rootRouteChildren: RootRouteChildren = {
   AchievementsRoute: AchievementsRoute,
   CertificationsRoute: CertificationsRoute,
   ExperienceRoute: ExperienceRoute,
+  OpensourceRoute: OpensourceRoute,
   ProjectsRoute: ProjectsRoute,
   SkillsRoute: SkillsRoute,
   StackRoute: StackRoute,
