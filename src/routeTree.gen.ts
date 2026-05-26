@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as StackRouteImport } from './routes/stack'
 import { Route as SkillsRouteImport } from './routes/skills'
+import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as ResumeRouteImport } from './routes/resume'
 import { Route as ProjectsRouteImport } from './routes/projects'
 import { Route as OpensourceRouteImport } from './routes/opensource'
@@ -37,6 +38,11 @@ const StackRoute = StackRouteImport.update({
 const SkillsRoute = SkillsRouteImport.update({
   id: '/skills',
   path: '/skills',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
+  id: '/sitemap.xml',
+  path: '/sitemap.xml',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ResumeRoute = ResumeRouteImport.update({
@@ -138,6 +144,7 @@ export interface FileRoutesByFullPath {
   '/opensource': typeof OpensourceRoute
   '/projects': typeof ProjectsRoute
   '/resume': typeof ResumeRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/skills': typeof SkillsRoute
   '/stack': typeof StackRoute
   '/admin/blog': typeof AdminBlogRoute
@@ -158,6 +165,7 @@ export interface FileRoutesByTo {
   '/opensource': typeof OpensourceRoute
   '/projects': typeof ProjectsRoute
   '/resume': typeof ResumeRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/skills': typeof SkillsRoute
   '/stack': typeof StackRoute
   '/admin/blog': typeof AdminBlogRoute
@@ -180,6 +188,7 @@ export interface FileRoutesById {
   '/opensource': typeof OpensourceRoute
   '/projects': typeof ProjectsRoute
   '/resume': typeof ResumeRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/skills': typeof SkillsRoute
   '/stack': typeof StackRoute
   '/admin/blog': typeof AdminBlogRoute
@@ -203,6 +212,7 @@ export interface FileRouteTypes {
     | '/opensource'
     | '/projects'
     | '/resume'
+    | '/sitemap.xml'
     | '/skills'
     | '/stack'
     | '/admin/blog'
@@ -223,6 +233,7 @@ export interface FileRouteTypes {
     | '/opensource'
     | '/projects'
     | '/resume'
+    | '/sitemap.xml'
     | '/skills'
     | '/stack'
     | '/admin/blog'
@@ -244,6 +255,7 @@ export interface FileRouteTypes {
     | '/opensource'
     | '/projects'
     | '/resume'
+    | '/sitemap.xml'
     | '/skills'
     | '/stack'
     | '/admin/blog'
@@ -266,6 +278,7 @@ export interface RootRouteChildren {
   OpensourceRoute: typeof OpensourceRoute
   ProjectsRoute: typeof ProjectsRoute
   ResumeRoute: typeof ResumeRoute
+  SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   SkillsRoute: typeof SkillsRoute
   StackRoute: typeof StackRoute
 }
@@ -284,6 +297,13 @@ declare module '@tanstack/react-router' {
       path: '/skills'
       fullPath: '/skills'
       preLoaderRoute: typeof SkillsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sitemap.xml': {
+      id: '/sitemap.xml'
+      path: '/sitemap.xml'
+      fullPath: '/sitemap.xml'
+      preLoaderRoute: typeof SitemapDotxmlRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/resume': {
@@ -439,6 +459,7 @@ const rootRouteChildren: RootRouteChildren = {
   OpensourceRoute: OpensourceRoute,
   ProjectsRoute: ProjectsRoute,
   ResumeRoute: ResumeRoute,
+  SitemapDotxmlRoute: SitemapDotxmlRoute,
   SkillsRoute: SkillsRoute,
   StackRoute: StackRoute,
 }
