@@ -14,6 +14,7 @@ import { Route as SkillsRouteImport } from './routes/skills'
 import { Route as ResumeRouteImport } from './routes/resume'
 import { Route as ProjectsRouteImport } from './routes/projects'
 import { Route as OpensourceRouteImport } from './routes/opensource'
+import { Route as HireRouteImport } from './routes/hire'
 import { Route as ExperienceRouteImport } from './routes/experience'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as CertificationsRouteImport } from './routes/certifications'
@@ -45,6 +46,11 @@ const ProjectsRoute = ProjectsRouteImport.update({
 const OpensourceRoute = OpensourceRouteImport.update({
   id: '/opensource',
   path: '/opensource',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const HireRoute = HireRouteImport.update({
+  id: '/hire',
+  path: '/hire',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ExperienceRoute = ExperienceRouteImport.update({
@@ -91,6 +97,7 @@ export interface FileRoutesByFullPath {
   '/certifications': typeof CertificationsRoute
   '/contact': typeof ContactRoute
   '/experience': typeof ExperienceRoute
+  '/hire': typeof HireRoute
   '/opensource': typeof OpensourceRoute
   '/projects': typeof ProjectsRoute
   '/resume': typeof ResumeRoute
@@ -105,6 +112,7 @@ export interface FileRoutesByTo {
   '/certifications': typeof CertificationsRoute
   '/contact': typeof ContactRoute
   '/experience': typeof ExperienceRoute
+  '/hire': typeof HireRoute
   '/opensource': typeof OpensourceRoute
   '/projects': typeof ProjectsRoute
   '/resume': typeof ResumeRoute
@@ -120,6 +128,7 @@ export interface FileRoutesById {
   '/certifications': typeof CertificationsRoute
   '/contact': typeof ContactRoute
   '/experience': typeof ExperienceRoute
+  '/hire': typeof HireRoute
   '/opensource': typeof OpensourceRoute
   '/projects': typeof ProjectsRoute
   '/resume': typeof ResumeRoute
@@ -136,6 +145,7 @@ export interface FileRouteTypes {
     | '/certifications'
     | '/contact'
     | '/experience'
+    | '/hire'
     | '/opensource'
     | '/projects'
     | '/resume'
@@ -150,6 +160,7 @@ export interface FileRouteTypes {
     | '/certifications'
     | '/contact'
     | '/experience'
+    | '/hire'
     | '/opensource'
     | '/projects'
     | '/resume'
@@ -164,6 +175,7 @@ export interface FileRouteTypes {
     | '/certifications'
     | '/contact'
     | '/experience'
+    | '/hire'
     | '/opensource'
     | '/projects'
     | '/resume'
@@ -179,6 +191,7 @@ export interface RootRouteChildren {
   CertificationsRoute: typeof CertificationsRoute
   ContactRoute: typeof ContactRoute
   ExperienceRoute: typeof ExperienceRoute
+  HireRoute: typeof HireRoute
   OpensourceRoute: typeof OpensourceRoute
   ProjectsRoute: typeof ProjectsRoute
   ResumeRoute: typeof ResumeRoute
@@ -221,6 +234,13 @@ declare module '@tanstack/react-router' {
       path: '/opensource'
       fullPath: '/opensource'
       preLoaderRoute: typeof OpensourceRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/hire': {
+      id: '/hire'
+      path: '/hire'
+      fullPath: '/hire'
+      preLoaderRoute: typeof HireRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/experience': {
@@ -283,6 +303,7 @@ const rootRouteChildren: RootRouteChildren = {
   CertificationsRoute: CertificationsRoute,
   ContactRoute: ContactRoute,
   ExperienceRoute: ExperienceRoute,
+  HireRoute: HireRoute,
   OpensourceRoute: OpensourceRoute,
   ProjectsRoute: ProjectsRoute,
   ResumeRoute: ResumeRoute,
