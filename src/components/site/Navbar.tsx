@@ -9,12 +9,8 @@ const NAV = [
   { to: "/about", label: "About" },
   { to: "/projects", label: "Projects" },
   { to: "/skills", label: "Skills" },
-  { to: "/experience", label: "Experience" },
   { to: "/certifications", label: "Certs" },
-  { to: "/achievements", label: "Wins" },
   { to: "/stack", label: "Stack" },
-  { to: "/opensource", label: "OSS" },
-  { to: "/blog", label: "Blog" },
   { to: "/resume", label: "Resume" },
   { to: "/contact", label: "Contact" },
 ];
@@ -55,7 +51,7 @@ export function Navbar() {
               <Terminal className="w-4 h-4" />
             </span>
             <span className="font-display font-semibold tracking-tight">
-              dev<span className="text-gradient">.shell</span>
+              Ansh <span className="text-gradient">Raj Shukla</span>
             </span>
           </Link>
 

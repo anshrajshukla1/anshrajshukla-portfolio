@@ -1,59 +1,65 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useState, useMemo } from "react";
+import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { PageShell } from "@/components/site/PageShell";
-import { Search, Github, ExternalLink, X, Sparkles } from "lucide-react";
+import { Github, X, Sparkles, Wrench } from "lucide-react";
 
 export const Route = createFileRoute("/projects")({ component: Projects });
 
-const CATEGORIES = ["All", "Full Stack", "Backend", "DevOps", "Cloud", "Java", "Spring Boot", "Frontend", "Experimental"] as const;
+const CATEGORIES = ["All", "Full Stack", "DevOps"] as const;
+type Category = typeof CATEGORIES[number];
 
 type Project = {
-  title: string; description: string; category: typeof CATEGORIES[number]; stack: string[]; features: string[];
+  title: string;
+  description: string;
+  category: Category;
+  stack: string[];
+  features: string[];
+  repo?: string;
 };
 
 const PROJECTS: Project[] = [
-  { title: "Distributed Order Engine", description: "Event-driven order processing handling millions of events daily.", category: "Backend", stack: ["Java", "Spring Boot", "Kafka", "Postgres", "Redis"], features: ["Idempotent processing", "Saga pattern", "Outbox + CDC", "Grafana SLOs"] },
-  { title: "Kube Cloud Platform", description: "Internal developer platform on Kubernetes with GitOps + autoscale.", category: "Cloud", stack: ["AWS", "EKS", "Terraform", "ArgoCD", "Prometheus"], features: ["GitOps", "Auto rollback", "Cost dashboards", "RBAC by team"] },
-  { title: "CI/CD Mesh", description: "Cross-repo CI/CD with caching, secrets and dynamic environments.", category: "DevOps", stack: ["GitHub Actions", "Docker", "Helm", "Vault"], features: ["Preview envs", "Reusable workflows", "Drift detection"] },
-  { title: "Spring Microservice Template", description: "Opinionated starter with observability, auth and resilience baked in.", category: "Spring Boot", stack: ["Spring Boot", "Resilience4j", "OpenTelemetry"], features: ["JWT auth", "Circuit breakers", "OTel tracing"] },
-  { title: "Realtime Dashboard UI", description: "React + WebSocket dashboard for streaming infra metrics.", category: "Frontend", stack: ["React", "TypeScript", "Tailwind", "WS"], features: ["Live charts", "Dark mode", "Virtualized lists"] },
-  { title: "Job Tracker SaaS", description: "Full stack app for managing job applications and recruiter outreach.", category: "Full Stack", stack: ["React", "Spring Boot", "Postgres"], features: ["OAuth", "Email pipeline", "Analytics"] },
-  { title: "Coffee Compiler", description: "Experimental DSL that compiles to Java bytecode just for fun.", category: "Experimental", stack: ["Java", "ANTLR", "ASM"], features: ["AST viewer", "REPL", "Bytecode dump"] },
-  { title: "Algo Visualizer", description: "Interactive visualizer for graph & DP algorithms used in interviews.", category: "Java", stack: ["Java", "JavaFX"], features: ["Step debugger", "Custom inputs"] },
+  {
+    title: "E-commerce Application",
+    description: "A full-stack e-commerce platform with product catalog, cart and order flow.",
+    category: "Full Stack",
+    stack: ["Java", "Spring Boot", "React", "MySQL"],
+    features: ["Product catalog & search", "Cart and checkout flow", "Auth & user accounts", "REST API backend"],
+    repo: "https://github.com/anshrajshukla1/E-commerceApplication",
+  },
+  {
+    title: "Trading Platform",
+    description: "Full-stack trading platform prototype with portfolios, orders and live market views.",
+    category: "Full Stack",
+    stack: ["Java", "Spring Boot", "React", "PostgreSQL"],
+    features: ["Portfolio dashboard", "Order placement flow", "Watchlists", "JWT secured APIs"],
+    repo: "https://github.com/anshrajshukla1/Trading-Platform",
+  },
 ];
 
 function Projects() {
-  const [cat, setCat] = useState<(typeof CATEGORIES)[number]>("All");
-  const [q, setQ] = useState("");
+  const [cat, setCat] = useState<Category>("All");
   const [active, setActive] = useState<Project | null>(null);
 
-  const filtered = useMemo(() => {
-    return PROJECTS.filter((p) => (cat === "All" || p.category === cat) && (q === "" || (p.title + p.description + p.stack.join(" ")).toLowerCase().includes(q.toLowerCase())));
-  }, [cat, q]);
+  const filtered = PROJECTS.filter((p) => cat === "All" || p.category === cat);
+  const showDevOpsEmpty = cat === "DevOps" || (cat === "All" && PROJECTS.every((p) => p.category !== "DevOps"));
 
   return (
     <PageShell
       eyebrow="// projects"
       title={<>The work that <span className="text-gradient">shipped.</span></>}
-      subtitle="A selection of placeholder projects across backend, full stack, DevOps and cloud. Swap with your actual repos."
+      subtitle="Selected full stack builds. DevOps projects coming soon."
     >
-      <div className="flex flex-col lg:flex-row gap-4 lg:items-center justify-between mb-8">
-        <div className="flex flex-wrap gap-2">
-          {CATEGORIES.map((c) => (
-            <button
-              key={c}
-              onClick={() => setCat(c)}
-              className={`px-3 py-1.5 rounded-full text-sm font-mono transition-all ${cat === c ? "bg-gradient-to-r from-primary to-accent text-primary-foreground glow" : "glass text-muted-foreground hover:text-foreground"}`}
-            >
-              {c}
-            </button>
-          ))}
-        </div>
-        <div className="relative w-full lg:w-72">
-          <Search className="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" />
-          <input value={q} onChange={(e) => setQ(e.target.value)} placeholder="Search projects…" className="w-full glass rounded-full pl-9 pr-4 py-2 text-sm focus:outline-none focus:border-primary/50" />
-        </div>
+      <div className="flex flex-wrap gap-2 mb-8">
+        {CATEGORIES.map((c) => (
+          <button
+            key={c}
+            onClick={() => setCat(c)}
+            className={`px-3 py-1.5 rounded-full text-sm font-mono transition-all ${cat === c ? "bg-gradient-to-r from-primary to-accent text-primary-foreground glow" : "glass text-muted-foreground hover:text-foreground"}`}
+          >
+            {c}
+          </button>
+        ))}
       </div>
 
       <motion.div layout className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
@@ -85,6 +91,14 @@ function Projects() {
           ))}
         </AnimatePresence>
       </motion.div>
+
+      {showDevOpsEmpty && (
+        <div className="mt-10 glass rounded-3xl border-2 border-dashed border-white/10 p-12 text-center">
+          <Wrench className="w-8 h-8 text-primary mx-auto mb-3" />
+          <div className="font-display text-lg font-semibold">DevOps projects — coming soon</div>
+          <div className="text-sm text-muted-foreground mt-1">This space is reserved for upcoming DevOps & cloud builds.</div>
+        </div>
+      )}
 
       <AnimatePresence>
         {active && (
@@ -124,14 +138,13 @@ function Projects() {
                 </div>
               </div>
 
-              <div className="mt-6 flex gap-3">
-                <a href="#" className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-primary to-accent text-primary-foreground px-5 py-2 text-sm font-medium glow">
-                  <ExternalLink className="w-4 h-4" /> Live demo
-                </a>
-                <a href="#" className="inline-flex items-center gap-2 rounded-full glass px-5 py-2 text-sm font-medium">
-                  <Github className="w-4 h-4" /> Source
-                </a>
-              </div>
+              {active.repo && (
+                <div className="mt-6 flex gap-3">
+                  <a href={active.repo} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-primary to-accent text-primary-foreground px-5 py-2 text-sm font-medium glow">
+                    <Github className="w-4 h-4" /> View on GitHub
+                  </a>
+                </div>
+              )}
             </motion.div>
           </motion.div>
         )}

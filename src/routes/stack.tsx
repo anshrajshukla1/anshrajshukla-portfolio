@@ -5,12 +5,12 @@ import { PageShell } from "@/components/site/PageShell";
 export const Route = createFileRoute("/stack")({ component: Stack });
 
 const CATEGORIES = [
-  { name: "Languages", color: "from-cyan-500/40 to-cyan-500/0", items: ["Java", "TypeScript", "Python", "Go", "SQL", "Bash"] },
-  { name: "Frameworks", color: "from-violet-500/40 to-violet-500/0", items: ["Spring Boot", "React", "Next.js", "Express", "FastAPI"] },
-  { name: "Databases", color: "from-emerald-500/40 to-emerald-500/0", items: ["PostgreSQL", "MongoDB", "Redis", "MySQL"] },
-  { name: "DevOps", color: "from-amber-500/40 to-amber-500/0", items: ["Docker", "Kubernetes", "Terraform", "GitHub Actions", "Helm"] },
-  { name: "Cloud", color: "from-sky-500/40 to-sky-500/0", items: ["AWS", "GCP", "Cloudflare", "Vercel"] },
-  { name: "Tools", color: "from-pink-500/40 to-pink-500/0", items: ["Git", "Linux", "Postman", "Grafana", "Prometheus"] },
+  { name: "Languages", color: "from-cyan-500/40 to-cyan-500/0", items: ["Java", "JavaScript", "SQL", "Bash"] },
+  { name: "Frameworks", color: "from-violet-500/40 to-violet-500/0", items: ["Spring Boot", "React"] },
+  { name: "Databases", color: "from-emerald-500/40 to-emerald-500/0", items: ["PostgreSQL", "MySQL"] },
+  { name: "DevOps", color: "from-amber-500/40 to-amber-500/0", items: ["Docker", "Kubernetes", "Terraform", "GitHub Actions"] },
+  { name: "Cloud", color: "from-sky-500/40 to-sky-500/0", items: ["AWS", "Vercel"] },
+  { name: "Tools", color: "from-pink-500/40 to-pink-500/0", items: ["Git", "Linux", "Postman"] },
 ];
 
 function Stack() {

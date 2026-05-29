@@ -59,7 +59,7 @@ function AdminOverview() {
         <div className="glass rounded-2xl p-6">
           <div className="font-display font-semibold mb-4">Top pages</div>
           <ul className="space-y-3 text-sm">
-            {[["/", "5.2k"], ["/projects", "3.1k"], ["/blog", "2.4k"], ["/hire", "980"], ["/resume", "640"]].map(([p, v]) => (
+            {[["/", "5.2k"], ["/projects", "3.1k"], ["/certifications", "2.4k"], ["/hire", "980"], ["/resume", "640"]].map(([p, v]) => (
               <li key={p} className="flex items-center justify-between">
                 <span className="font-mono text-muted-foreground">{p}</span><span>{v}</span>
               </li>
