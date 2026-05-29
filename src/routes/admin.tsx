@@ -1,5 +1,5 @@
 import { createFileRoute, Link, Outlet, useRouterState } from "@tanstack/react-router";
-import { LayoutDashboard, MessageSquare, FolderKanban, FileText, Award, LogOut, Terminal } from "lucide-react";
+import { LayoutDashboard, MessageSquare, FolderKanban, Award, LogOut, Terminal } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 export const Route = createFileRoute("/admin")({ component: AdminLayout });
@@ -8,7 +8,6 @@ const ITEMS = [
   { to: "/admin", label: "Overview", i: LayoutDashboard, exact: true },
   { to: "/admin/messages", label: "Messages", i: MessageSquare },
   { to: "/admin/projects", label: "Projects", i: FolderKanban },
-  { to: "/admin/blog", label: "Blog", i: FileText },
   { to: "/admin/certs", label: "Certs", i: Award },
 ];
 
@@ -20,7 +19,7 @@ function AdminLayout() {
         <Link to="/admin" className="flex items-center gap-2 px-3 py-3 mb-4">
           <span className="grid place-items-center w-9 h-9 rounded-xl bg-gradient-to-br from-primary to-accent text-primary-foreground glow"><Terminal className="w-4 h-4" /></span>
           <div>
-            <div className="font-display font-semibold leading-tight">dev.shell</div>
+            <div className="font-display font-semibold leading-tight">Ansh Raj Shukla</div>
             <div className="text-[10px] font-mono text-muted-foreground">admin · v0.1</div>
           </div>
         </Link>

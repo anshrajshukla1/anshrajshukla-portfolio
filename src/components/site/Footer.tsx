@@ -1,5 +1,11 @@
 import { Link } from "@tanstack/react-router";
-import { Github, Linkedin, Twitter, Mail } from "lucide-react";
+import { Github, Linkedin, Mail } from "lucide-react";
+
+const SOCIALS = [
+  { I: Github, href: "https://github.com/anshrajshukla1", label: "GitHub" },
+  { I: Linkedin, href: "https://www.linkedin.com/in/ansh-raj-shukla-84572831a", label: "LinkedIn" },
+  { I: Mail, href: "mailto:anshrajshukla.official@gmail.com", label: "Email" },
+];
 
 export function Footer() {
   return (
@@ -18,7 +24,7 @@ export function Footer() {
         <div>
           <div className="text-xs uppercase tracking-widest text-muted-foreground mb-3">Explore</div>
           <ul className="space-y-2 text-sm">
-            {["projects","experience","blog","resume","contact"].map(p=>(
+            {["projects","skills","certifications","resume","contact"].map(p=>(
               <li key={p}><Link to={`/${p}`} className="hover:text-primary transition-colors capitalize">{p}</Link></li>
             ))}
           </ul>
@@ -26,9 +32,9 @@ export function Footer() {
         <div>
           <div className="text-xs uppercase tracking-widest text-muted-foreground mb-3">Connect</div>
           <div className="flex gap-2">
-            {[Github, Linkedin, Twitter, Mail].map((Icon, i) => (
-              <a key={i} href="#" className="glass w-10 h-10 grid place-items-center rounded-full hover:text-primary hover:glow transition-all">
-                <Icon className="w-4 h-4" />
+            {SOCIALS.map(({ I, href, label }) => (
+              <a key={label} href={href} target="_blank" rel="noreferrer" aria-label={label} className="glass w-10 h-10 grid place-items-center rounded-full hover:text-primary hover:glow transition-all">
+                <I className="w-4 h-4" />
               </a>
             ))}
           </div>
@@ -42,7 +48,7 @@ export function Footer() {
         </div>
       </div>
       <div className="border-t border-white/5 py-6 text-center text-xs text-muted-foreground">
-        © {new Date().getFullYear()} dev.shell — Crafted with obsession.
+        © {new Date().getFullYear()} Ansh Raj Shukla — Crafted with obsession.
       </div>
     </footer>
   );
