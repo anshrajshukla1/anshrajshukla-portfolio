@@ -11,21 +11,18 @@ const CHANNELS = [
     label: "LinkedIn",
     handle: "ansh-raj-shukla-84572831a",
     href: "https://www.linkedin.com/in/ansh-raj-shukla-84572831a",
-    blurb: "Best for roles, intros and recruiter conversations.",
   },
   {
     I: Github,
     label: "GitHub",
     handle: "anshrajshukla1",
     href: "https://github.com/anshrajshukla1",
-    blurb: "Code, side projects and open source contributions.",
   },
   {
     I: Mail,
     label: "Email",
     handle: "anshrajshukla.official@gmail.com",
     href: "mailto:anshrajshukla.official@gmail.com",
-    blurb: "Direct line for opportunities, collaborations and questions.",
   },
 ];
 
