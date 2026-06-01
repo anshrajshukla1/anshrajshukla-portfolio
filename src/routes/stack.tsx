@@ -10,7 +10,7 @@ const CATEGORIES = [
   { name: "Databases", color: "from-emerald-500/40 to-emerald-500/0", items: ["PostgreSQL", "MySQL"] },
   { name: "DevOps", color: "from-amber-500/40 to-amber-500/0", items: ["Docker", "Kubernetes", "Terraform", "GitHub Actions"] },
   { name: "Cloud", color: "from-sky-500/40 to-sky-500/0", items: ["AWS", "Vercel"] },
-  { name: "Tools", color: "from-pink-500/40 to-pink-500/0", items: ["Git", "Linux", "Postman"] },
+  { name: "Tools", color: "from-pink-500/40 to-pink-500/0", items: ["Git", "Linux", "Postman", "Stripe"] },
 ];
 
 function Stack() {

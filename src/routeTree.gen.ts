@@ -13,7 +13,6 @@ import { Route as StackRouteImport } from './routes/stack'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as ResumeRouteImport } from './routes/resume'
 import { Route as ProjectsRouteImport } from './routes/projects'
-import { Route as HireRouteImport } from './routes/hire'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as CertificationsRouteImport } from './routes/certifications'
 import { Route as AdminRouteImport } from './routes/admin'
@@ -42,11 +41,6 @@ const ResumeRoute = ResumeRouteImport.update({
 const ProjectsRoute = ProjectsRouteImport.update({
   id: '/projects',
   path: '/projects',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const HireRoute = HireRouteImport.update({
-  id: '/hire',
-  path: '/hire',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ContactRoute = ContactRouteImport.update({
@@ -101,7 +95,6 @@ export interface FileRoutesByFullPath {
   '/admin': typeof AdminRouteWithChildren
   '/certifications': typeof CertificationsRoute
   '/contact': typeof ContactRoute
-  '/hire': typeof HireRoute
   '/projects': typeof ProjectsRoute
   '/resume': typeof ResumeRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
@@ -116,7 +109,6 @@ export interface FileRoutesByTo {
   '/about': typeof AboutRoute
   '/certifications': typeof CertificationsRoute
   '/contact': typeof ContactRoute
-  '/hire': typeof HireRoute
   '/projects': typeof ProjectsRoute
   '/resume': typeof ResumeRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
@@ -133,7 +125,6 @@ export interface FileRoutesById {
   '/admin': typeof AdminRouteWithChildren
   '/certifications': typeof CertificationsRoute
   '/contact': typeof ContactRoute
-  '/hire': typeof HireRoute
   '/projects': typeof ProjectsRoute
   '/resume': typeof ResumeRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
@@ -151,7 +142,6 @@ export interface FileRouteTypes {
     | '/admin'
     | '/certifications'
     | '/contact'
-    | '/hire'
     | '/projects'
     | '/resume'
     | '/sitemap.xml'
@@ -166,7 +156,6 @@ export interface FileRouteTypes {
     | '/about'
     | '/certifications'
     | '/contact'
-    | '/hire'
     | '/projects'
     | '/resume'
     | '/sitemap.xml'
@@ -182,7 +171,6 @@ export interface FileRouteTypes {
     | '/admin'
     | '/certifications'
     | '/contact'
-    | '/hire'
     | '/projects'
     | '/resume'
     | '/sitemap.xml'
@@ -199,7 +187,6 @@ export interface RootRouteChildren {
   AdminRoute: typeof AdminRouteWithChildren
   CertificationsRoute: typeof CertificationsRoute
   ContactRoute: typeof ContactRoute
-  HireRoute: typeof HireRoute
   ProjectsRoute: typeof ProjectsRoute
   ResumeRoute: typeof ResumeRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
@@ -234,13 +221,6 @@ declare module '@tanstack/react-router' {
       path: '/projects'
       fullPath: '/projects'
       preLoaderRoute: typeof ProjectsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/hire': {
-      id: '/hire'
-      path: '/hire'
-      fullPath: '/hire'
-      preLoaderRoute: typeof HireRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/contact': {
@@ -331,7 +311,6 @@ const rootRouteChildren: RootRouteChildren = {
   AdminRoute: AdminRouteWithChildren,
   CertificationsRoute: CertificationsRoute,
   ContactRoute: ContactRoute,
-  HireRoute: HireRoute,
   ProjectsRoute: ProjectsRoute,
   ResumeRoute: ResumeRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,

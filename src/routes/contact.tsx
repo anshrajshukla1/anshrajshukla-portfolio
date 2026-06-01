@@ -11,21 +11,18 @@ const CHANNELS = [
     label: "LinkedIn",
     handle: "ansh-raj-shukla-84572831a",
     href: "https://www.linkedin.com/in/ansh-raj-shukla-84572831a",
-    blurb: "Best for roles, intros and recruiter conversations.",
   },
   {
     I: Github,
     label: "GitHub",
     handle: "anshrajshukla1",
     href: "https://github.com/anshrajshukla1",
-    blurb: "Code, side projects and open source contributions.",
   },
   {
     I: Mail,
     label: "Email",
     handle: "anshrajshukla.official@gmail.com",
     href: "mailto:anshrajshukla.official@gmail.com",
-    blurb: "Direct line for opportunities, collaborations and questions.",
   },
 ];
 
@@ -34,7 +31,6 @@ function Contact() {
     <PageShell
       eyebrow="// contact"
       title={<>Let's build something <span className="text-gradient">together.</span></>}
-      subtitle="Recruiters, founders, collaborators — reach out on the channel you prefer. I reply within 24 hours."
     >
       <div className="grid md:grid-cols-3 gap-5">
         {CHANNELS.map((c, i) => (
@@ -58,7 +54,7 @@ function Contact() {
             </div>
             <div className="mt-5 font-display text-xl font-semibold">{c.label}</div>
             <div className="text-sm font-mono text-muted-foreground mt-1 break-all">{c.handle}</div>
-            <div className="text-sm text-muted-foreground mt-3">{c.blurb}</div>
+            
           </motion.a>
         ))}
       </div>
