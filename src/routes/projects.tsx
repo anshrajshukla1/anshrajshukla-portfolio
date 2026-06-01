@@ -21,10 +21,10 @@ type Project = {
 const PROJECTS: Project[] = [
   {
     title: "E-commerce Application",
-    description: "A full-stack e-commerce platform with product catalog, cart and order flow.",
+    description: "Production-ready e-commerce platform featuring JWT authentication, role-based access control, seller and admin dashboards, secure payments, and complete order management workflows.",
     category: "Full Stack",
-    stack: ["Java", "Spring Boot", "React", "MySQL"],
-    features: ["Product catalog & search", "Cart and checkout flow", "Auth & user accounts", "REST API backend"],
+    stack: ["Java", "Spring Boot", "React", "MySQL", "Stripe"],
+    features: ["JWT auth & RBAC", "Seller & admin dashboards", "Secure Stripe payments", "Order management workflows"],
     repo: "https://github.com/anshrajshukla1/E-commerceApplication",
   },
   {
