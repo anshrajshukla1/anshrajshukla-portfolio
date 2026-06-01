@@ -31,7 +31,6 @@ function Contact() {
     <PageShell
       eyebrow="// contact"
       title={<>Let's build something <span className="text-gradient">together.</span></>}
-      subtitle="Recruiters, founders, collaborators — reach out on the channel you prefer. I reply within 24 hours."
     >
       <div className="grid md:grid-cols-3 gap-5">
         {CHANNELS.map((c, i) => (
