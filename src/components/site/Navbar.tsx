@@ -81,10 +81,10 @@ export function Navbar() {
 
           <div className="flex items-center gap-2">
             <Link
-              to="/hire"
+              to="/contact"
               className="hidden md:inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm font-medium bg-gradient-to-r from-primary to-accent text-primary-foreground hover:opacity-90 transition-opacity glow"
             >
-              Hire me
+              Contact
             </Link>
             <button
               aria-label="Toggle menu"
