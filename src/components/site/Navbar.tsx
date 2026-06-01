@@ -117,10 +117,10 @@ export function Navbar() {
                 </Link>
               ))}
               <Link
-                to="/hire"
+                to="/contact"
                 className="col-span-2 mt-1 px-3 py-2 rounded-xl text-sm font-medium text-center bg-gradient-to-r from-primary to-accent text-primary-foreground"
               >
-                Hire me
+                Contact
               </Link>
             </motion.div>
           )}
