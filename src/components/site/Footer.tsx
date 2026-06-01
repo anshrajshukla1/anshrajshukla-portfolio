@@ -24,7 +24,7 @@ export function Footer() {
         <div>
           <div className="text-xs uppercase tracking-widest text-muted-foreground mb-3">Explore</div>
           <ul className="space-y-2 text-sm">
-            {["projects","skills","certifications","resume","contact"].map(p=>(
+            {["projects","certifications","stack","resume","contact"].map(p=>(
               <li key={p}><Link to={`/${p}`} className="hover:text-primary transition-colors capitalize">{p}</Link></li>
             ))}
           </ul>
