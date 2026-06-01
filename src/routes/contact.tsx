@@ -54,7 +54,7 @@ function Contact() {
             </div>
             <div className="mt-5 font-display text-xl font-semibold">{c.label}</div>
             <div className="text-sm font-mono text-muted-foreground mt-1 break-all">{c.handle}</div>
-            <div className="text-sm text-muted-foreground mt-3">{c.blurb}</div>
+            
           </motion.a>
         ))}
       </div>
