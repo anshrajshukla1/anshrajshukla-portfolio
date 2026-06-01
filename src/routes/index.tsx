@@ -5,7 +5,7 @@ import { ArrowRight } from "lucide-react";
 
 export const Route = createFileRoute("/")({ component: Home });
 
-const ROLES = ["Java Full Stack Engineer", "Backend Architect", "DevOps & Cloud Engineer", "Distributed Systems Builder"];
+const ROLES = ["Java Full Stack Developer", "DevOps and Cloud Enthusiast", "Backend Focused"];
 
 function useTypewriter(words: string[], speed = 70, pause = 1600) {
   const [i, setI] = useState(0);
@@ -53,9 +53,7 @@ function Hero() {
             transition={{ delay: 0.1, duration: 0.7 }}
             className="mt-6 font-display text-5xl md:text-7xl lg:text-8xl font-semibold leading-[1.02] tracking-tight"
           >
-            Engineering the<br />
-            <span className="text-gradient">backbone</span> of<br />
-            modern products.
+            Building <span className="text-gradient">scalable backend</span> and cloud-native applications
           </motion.h1>
 
           <motion.div
@@ -74,7 +72,7 @@ function Hero() {
             transition={{ delay: 0.5 }}
             className="mt-6 max-w-xl text-muted-foreground"
           >
-            I design and deploy resilient, observable, cloud-native systems with Java, Spring Boot, Docker, Kubernetes and AWS — turning complex requirements into shipped product.
+            Developing modern web applications using Java, Spring Boot, React, Docker and AWS while continuously exploring cloud, DevOps and scalable backend systems.
           </motion.p>
 
           <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.6 }} className="mt-8 flex flex-wrap gap-3">
